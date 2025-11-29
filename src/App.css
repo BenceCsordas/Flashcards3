@@ -1,24 +1,186 @@
-.flipCard {
-    
-    border: 1px solid gray;
-    border-radius: 10px;
-    
+*{
+    box-sizing: border-box;
+    margin: 0;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.Flashcards {
+    height: calc(100vh - 46px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.header {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.header span:hover {
+    cursor: pointer;
+}
+.flipCard {
+    border-radius: 10px;
     text-align: center;
 }
 .flipContainer {
     width: 250px;
     height: 300px;
+    position: relative;
+}
+.cardNumber {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    font-size: 1.5rem;   
+}
+.cardNumber::before{
+    position: absolute;
+    content: attr(title);
+    bottom: -255px;
+    right: -220px;
+    transform: rotate(180deg);
 }
 .FCFront, .FCBack {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.FCFront {
+    /* backdrop-filter: blur(5px); */
+    background-color: rgba(255, 36, 36, 0.096);
+    border-top: 1px solid rgba(255, 143, 143, 0.322);
+    border-left: 1px solid rgba(255, 143, 143, 0.322);
+    
 }
 .FCBack {
-    background-color: whitesmoke;
+    background-color: rgba(5, 1, 1, 0.096);
+    border-top: 1px solid rgba(83, 83, 83, 0.322);
+    border-left: 1px solid rgba(83, 83, 83, 0.322);
 }
-.Flashcards {
-    height: calc(100vh - 36px);
+
+.container {
+    /* background: #ffffff;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(232, 232, 232, 1) 56%, rgba(232, 232, 232, 1) 100%); */
+    background: #0F172A;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 1) 0%, rgba(2, 6, 23, 1) 56%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addBtn, .Home button, .topics button {
+    user-select: none;
+    cursor: pointer;
+    padding: 15px 40px;
+    background: none;
+    z-index: 0;
+   
+    background-color: rgba(255, 36, 36, 0.096);
+    border: none;
+    border-top: 1px solid rgba(255, 143, 143, 0.322);
+    border-left: 1px solid rgba(255, 143, 143, 0.322);
+   
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+}
+.addBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.FCFront:hover, .addBtn:hover, .Home button:hover, .topics button:hover {
+    background-color: rgba(255, 57, 57, 0.116);
+    transition: .1s ease-in;
+}
+.FCBack:hover{
+    background-color: rgba(1, 4, 46, 0.116);
+    transition: .1s ease-in;
+}
+.ArrowsHolder {
+    display: flex;
+    flex-direction: row;
+}
+.Arrows {
+    cursor: pointer;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.089);
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 50%;
+    margin: 20px;
+    transition: .1s ease-in-out;
+}
+.Arrows:active {
+    background-color: rgba(255, 255, 255, 0.281);
+    transition: .1s ease-in-out;
+}
+
+.topicForm{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 36, 36, 0.096);
+    border-top: 1px solid rgba(255, 143, 143, 0.322);
+    border-left: 1px solid rgba(255, 143, 143, 0.322);
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 20px;
+    position: relative;
+}
+.topicForm h1 {
+    text-align: center;
+}
+.topicForm input {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgba(15, 23, 42, 1);
+    border: none;
+    border-top: 1px solid rgba(83, 83, 83, 0.322);
+    border-left: 1px solid rgba(83, 83, 83, 0.322);
+    border-radius: 10px;
+}
+.topicForm button {
+    user-select: none;
+    cursor: pointer;
+    padding: 15px 40px;
+    background: none;
+    z-index: 0;
+    border: none;
+    background-color: rgba(255, 36, 36, 0.096);
+    width: 100%;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.15rem;
+}
+
+.topicForm input:focus {
+    outline: none;
+    border: 3px solid rgb(86, 101, 134);
+    padding: 7.5px 40px;
+    
+}
+
+.Home, .topics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+.Home button, .topics button {
+    font-variant: small-caps;
+    font-size: 2rem;
 }

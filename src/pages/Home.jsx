@@ -8,10 +8,10 @@ const Home = () => {
 
 
   const { token } = useContext(MyUserContext);
-    console.log(token);
+  console.log(token);
     
     return (
-      <div>
+      <div className='Home'>
         {/* <input type="text" value={newTopic} onChange={(e)=>setNewTopic(e.target.value)}/> */}
         <button onClick={()=>navigate("/addTopic")}>Témakörök hozzáadása</button>
         <button onClick={()=>navigate("/topics")}>Témakörök</button>

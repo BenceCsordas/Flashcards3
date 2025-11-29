@@ -16,8 +16,9 @@ const AddTopic = () => {
 
   return (
   
-    <form onSubmit={handleSubmit}>
-        <label>Témakör:</label>
+    <form onSubmit={handleSubmit} className="topicForm">
+        
+        <h1>Témakör</h1>
         <input type="text" required onChange={(e)=>setTopic(e.target.value)}/>
         <button type="submit">Témakör hozzáadása</button>
     </form>

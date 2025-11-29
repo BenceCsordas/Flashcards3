@@ -8,6 +8,7 @@ import { FaArrowLeft } from "react-icons/fa";
 const MyFlashCard = () => {
     const [cards, setCards] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
+    
     const navigate = useNavigate()
     const {id} = useParams()
 
@@ -26,16 +27,16 @@ const MyFlashCard = () => {
 
   return (
     <div className='Flashcards'>
-      <button onClick={()=>navigate("/addCard/"+id)}>Új kártya hozzáadása</button>
+      <button onClick={()=>navigate("/addCard/"+id)} className='addBtn'>Új kártya hozzáadása</button>
 
-        {cards.length > 0 ? <MyFlipCard currentCard={cards[currentIndex]}/> : <p>Nincsenek kérdések ehhez a témakörhöz</p>}
+        {cards.length > 0 ? <MyFlipCard currentCard={cards[currentIndex]} currentIndex={currentIndex}/> : <p>Nincsenek kérdések ehhez a témakörhöz</p>}
       {/* {cards && cards.length > 0 && cards.map(obj=><MyFlipCard {...obj}/>)}   */}
-      <div>
-        <span  onClick={swipeRight}>
+      <div className='ArrowsHolder'>
+        <span  onClick={swipeRight} className='Arrows'>
             <FaArrowLeft />
         </span>
                    
-        <span  onClick={swipeLeft}>
+        <span  onClick={swipeLeft} className='Arrows'>
             <FaArrowRight />
         </span>
       </div>
