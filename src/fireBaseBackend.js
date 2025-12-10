@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore"
 import { db } from "./fireBaseApp"
 
 
@@ -50,4 +50,15 @@ export const readCardsOnce = async (topicId, setCards) => {
         return []
     }
 
+}
+
+export const deleteCard = async (topicId, cardId) => {
+        console.log(topicId, cardId)
+        const docRef = doc(db, "topics", topicId, "cards", cardId)
+        await deleteDoc(docRef)
+}
+
+export const deleteTopic = async (topicId) => {
+        const docRef = doc(db, "topics", topicId)
+        await deleteDoc(docRef)
 }

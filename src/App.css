@@ -75,7 +75,7 @@
     justify-content: center;
     align-items: center;
 }
-.addBtn, .Home button, .topics button {
+.addBtn, .Home button, .topics button, .delBtn {
     user-select: none;
     cursor: pointer;
     padding: 15px 40px;
@@ -95,10 +95,19 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    width: 215px;
+}
+.delBtn {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: 215px;
+}
+.delTopicBtn{
+    top: 130px;
 }
 
-
-.FCFront:hover, .addBtn:hover, .Home button:hover, .topics button:hover {
+.FCFront:hover, .addBtn:hover, .Home button:hover, .topics button:hover, .delBtn:hover {
     background-color: rgba(255, 57, 57, 0.116);
     transition: .1s ease-in;
 }
@@ -229,4 +238,10 @@
     padding: 10px;
     gap: 20px;
     position: relative;
+}
+.dropdown {
+    background-color: rgba(255, 36, 36, 0.096);
+    border: none;
+    border-top: 1px solid rgba(255, 143, 143, 0.322);
+    border-left: 1px solid rgba(255, 143, 143, 0.322);
 }
