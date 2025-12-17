@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { MyAuthContext, MyUserContext } from "../context/AuthContext";
+import { MyAuthContext} from "../context/AuthContext";
 import AccessKeyModal from "../components/AccessKeyModal";
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
       }
 
   }
+  
   return (
     <div className="Home">
       {/* <input type="text" value={newTopic} onChange={(e)=>setNewTopic(e.target.value)}/> */}

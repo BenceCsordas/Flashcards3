@@ -1,24 +1,50 @@
 import React, { createContext, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { sha1 } from '../utils'
+import axios from 'axios'
+import { useEffect } from 'react'
 
-export const MyUserContext = createContext()
 export const MyAuthContext = createContext()
-const STORED_HASH = "1ea90264dd99eea07d2d91335d5f3f0e319ee596"
+
+// const API_URL = "http://localhost:3001"
+
 const MyUserProvider = ({children}) => {
     const [hasAccess, setHasAccess] = useState(false)
-    
+    const [loading, setLoading] = useState(true)    
+
+    useEffect(()=>{
+        const checkAuth = async () => {
+            try {
+                await axios.get(`${import.meta.env.VITE_API_URL}/protected`,{withCredentials:true})
+                setHasAccess(true)
+            } catch (error) {
+                console.log(error)
+                setHasAccess(false)
+            }finally {
+                setLoading(false)
+            }
+        }
+
+        checkAuth()
+    },[])
+
 
     const verifyKey = async (key) => {
-        const hash = await sha1(key)
-        const result = hash === STORED_HASH //true vagy false
-        if(result) setHasAccess(true)
-        return result //fontos lesz a modalnak
+        try {
+            await axios.post(`${import.meta.env.VITE_API_URL}/login`, {key}, {withCredentials:true})
+            setHasAccess(true)
+            return true
+        } catch (error) {
+            console.log(error)
+            return false
+        }
     }
 
-    const clearKey = (key) => {
+    const clearKey = async (key) => {
+        await axios.post(`${import.meta.env.VITE_API_URL}/logout`, {}, {withCredentials:true})
         setHasAccess(false)
     }
+
+    console.log(hasAccess)
 
   return (
     <div>

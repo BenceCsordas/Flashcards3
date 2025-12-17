@@ -8,7 +8,7 @@ const AddTopic = () => {
   const navigate = useNavigate();
   const {hasAccess, clearKey} = useContext(MyAuthContext)
 
-  console.log(topic)
+  topic && console.log(topic)
   const handleSubmit = async (e) => {
     e.preventDefault()
     await addTopic(topic)
@@ -24,7 +24,7 @@ const AddTopic = () => {
       <form onSubmit={handleSubmit} className="topicForm">
           <h1>Témakör hozzáadása</h1>
           <input type="text" placeholder="Témakör" required onChange={(e)=>setTopic(e.target.value)}/>
-          <button type="submit">Hozzáadás</button>
+          <button type="submit" onClick={()=>navigate("/topics")}>Hozzáadás</button>
       </form>
           {hasAccess && <button className="logoutBtn" onClick={handleLogout}>Kilépés admin módból</button>}
 

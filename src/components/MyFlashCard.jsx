@@ -17,7 +17,7 @@ const MyFlashCard = () => {
     const {hasAccess} = useContext(MyAuthContext)
     const {id} = useParams()
 
-    cards && console.log(cards[currentIndex])
+    
     console.log(id, "azzazaz")
     useEffect(()=>{
         readCardsOnce(id, setCards)    
@@ -82,7 +82,7 @@ const MyFlashCard = () => {
       </div>
       <AccessKeyModal open={open} onClose={()=>setOpen(false)} onSuccess={()=>navigate('/addCard/'+id)}/>
       <AccessKeyModal open={open2} onClose={()=>setOpen2(false)} onSuccess={()=> navigate('/topics/' + id)}/>
-        <AccessKeyModal open={open3} onClose={()=>setOpen3(false)} onSuccess={()=> navigate('/topics')}/>
+      <AccessKeyModal open={open3} onClose={()=>setOpen3(false)} onSuccess={()=> navigate('/topics')}/>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, query, where, writeBatch } from "firebase/firestore"
 import { db } from "./fireBaseApp"
 
 
@@ -58,7 +58,24 @@ export const deleteCard = async (topicId, cardId) => {
         await deleteDoc(docRef)
 }
 
-export const deleteTopic = async (topicId) => {
-        const docRef = doc(db, "topics", topicId)
-        await deleteDoc(docRef)
+export const deleteTopic = async (topicId) => {    
+  try {
+    const topicRef = doc(db, "topics", topicId);
+    const cardsRef = collection(topicRef, "cards");
+    // 1) Lekérjük a kártyákat
+    const cardsSnap = await getDocs(cardsRef);
+    // 2) Batch törlés a kártyákra
+    const batch = writeBatch(db);//a Firestore egyik beépített művelete, 
+    // amivel több írást / törlést egyetlen tranzakcióban tudsz lefuttatni.
+    // Ezért használjuk subcollection törlésére is.
+    cardsSnap.forEach((card) => {
+      batch.delete(card.ref);
+    });
+    await batch.commit(); // kártyák törlése kész
+    // 3) Maga a témadokumentum törlése
+    await deleteDoc(topicRef);
+    console.log("Téma és összes kártya törölve:", topicId);
+  } catch (error) {
+    console.error("Téma törlési hiba:", error);
+  }
 }

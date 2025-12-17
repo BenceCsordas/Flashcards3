@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { MyUserContext } from "../context/AuthContext";
+// import { MyUserContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
 import { readTopicsOnce } from "../fireBaseBackend";
 import AccessKeyModal from "../components/AccessKeyModal";
