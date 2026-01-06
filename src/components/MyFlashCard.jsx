@@ -16,7 +16,7 @@ const MyFlashCard = () => {
     const navigate = useNavigate();
     const {hasAccess} = useContext(MyAuthContext)
     const {id} = useParams()
-
+    const [flipped, setFlipped] = useState(false)
     
     console.log(id, "azzazaz")
     useEffect(()=>{
@@ -25,10 +25,11 @@ const MyFlashCard = () => {
 
     const swipeLeft = () => {
         console.log(cards.length);
-        
+        setFlipped(false)
         setCurrentIndex(prev => prev != cards.length-1 ? prev+=1 : prev-=cards.length-1)
     }
     const swipeRight = () => {
+        setFlipped(false)
         setCurrentIndex(prev => prev != 0 ? prev-=1 : prev+=cards.length-1)
     }
 
@@ -70,7 +71,7 @@ const MyFlashCard = () => {
       <button onClick={handleDeleteCard} className='delBtn'>Kártya törlése</button>
       <button onClick={handleDeleteTopic} className='delBtn delTopicBtn'>Témakör törlése</button>
 
-        {cards.length > 0 ? <MyFlipCard currentCard={cards[currentIndex]} currentIndex={currentIndex}/> : <p>Nincsenek kérdések ehhez a témakörhöz</p>}
+        {cards.length > 0 ? <MyFlipCard flipped={flipped} setFlipped={setFlipped} currentCard={cards[currentIndex]} currentIndex={currentIndex}/> : <p>Nincsenek kérdések ehhez a témakörhöz</p>}
       {/* {cards && cards.length > 0 && cards.map(obj=><MyFlipCard {...obj}/>)}   */}
       <div className='ArrowsHolder'>
         <span  onClick={swipeRight} className='Arrows'>

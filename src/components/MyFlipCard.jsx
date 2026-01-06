@@ -2,14 +2,16 @@ import React from 'react'
 import ReactFlipCard from 'reactjs-flip-card'
 
 
-const MyFlipCard = ({currentCard, currentIndex}) => {
+const MyFlipCard = ({currentCard, currentIndex, flipped, setFlipped}) => {
     
  currentCard && console.log(currentCard)
   return (
     <div className='cardHolder'>
         
         <ReactFlipCard
-                flipTrigger={'onClick'}
+                flipTrigger='disabled'
+                flipByProp={flipped}
+                onClick={()=>setFlipped(!flipped)}
                 flipCardCss='flipCard'
                 containerCss='flipContainer'
                 frontCss='FCFront'
