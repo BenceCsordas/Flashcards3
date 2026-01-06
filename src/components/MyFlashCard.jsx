@@ -45,6 +45,7 @@ const MyFlashCard = () => {
       console.log(hasAccess)
       if(hasAccess){
         deleteCard(id, cards[currentIndex].id)
+        navigate("/topics")
       }else {
         setOpen2(true)
       }
