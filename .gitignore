@@ -24,4 +24,3 @@ dist-ssr
 *.sw?
 .env
 fireBaseConfig.js
-README.md
