@@ -9,6 +9,7 @@ export const MyAuthContext = createContext()
 
 const MyUserProvider = ({children}) => {
     const [hasAccess, setHasAccess] = useState(false)
+    const [currentTopic, setCurrentTopic] = useState("")
     const [loading, setLoading] = useState(true)    
 
     useEffect(()=>{
@@ -48,7 +49,7 @@ const MyUserProvider = ({children}) => {
 
   return (
     <div>
-          <MyAuthContext.Provider value={{hasAccess, verifyKey, clearKey}}>
+          <MyAuthContext.Provider value={{hasAccess, verifyKey, clearKey, currentTopic, setCurrentTopic}}>
             {children}
           </MyAuthContext.Provider>
         </div>

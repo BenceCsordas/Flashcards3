@@ -17,11 +17,11 @@ const MyFlashCard = () => {
     const {hasAccess} = useContext(MyAuthContext)
     const {id} = useParams()
     const [flipped, setFlipped] = useState(false)
-    
-    console.log(id, "azzazaz")
+     const {currentTopic} = useContext(MyAuthContext)
     useEffect(()=>{
-        readCardsOnce(id, setCards)    
+      readCardsOnce(id, setCards)    
     }, [])
+    console.log(cards)
 
     const swipeLeft = () => {
         console.log(cards.length);
@@ -70,7 +70,7 @@ const MyFlashCard = () => {
       <button onClick={handleAddCard} className='addBtn'>Új kártya hozzáadása</button>
       <button onClick={handleDeleteCard} className='delBtn'>Kártya törlése</button>
       <button onClick={handleDeleteTopic} className='delBtn delTopicBtn'>Témakör törlése</button>
-
+        <h1>{currentTopic}</h1>
         {cards.length > 0 ? <MyFlipCard flipped={flipped} setFlipped={setFlipped} currentCard={cards[currentIndex]} currentIndex={currentIndex}/> : <p>Nincsenek kérdések ehhez a témakörhöz</p>}
       {/* {cards && cards.length > 0 && cards.map(obj=><MyFlipCard {...obj}/>)}   */}
       <div className='ArrowsHolder'>

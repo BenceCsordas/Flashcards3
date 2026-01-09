@@ -7,7 +7,7 @@ const AddCard = () => {
 
   const [question, setQuestion] = useState("")
   const [answer, setAnswer] = useState("")
-  const {hasAccess, clearKey} = useContext(MyAuthContext)
+  const {hasAccess, clearKey, currentTopic} = useContext(MyAuthContext)
   const {id} = useParams()
   const navigate = useNavigate()
   
@@ -28,6 +28,7 @@ const AddCard = () => {
       <div className='formDiv'>
         <form onSubmit={handleSubmit} className='cardForm'>
           <h1>Kártya hozzáadása</h1>
+          <h2 style={{textAlign:"center"}}>{currentTopic}</h2>
             {/* <label>Kérdés:</label> */}
             <input type='text' placeholder='Kérdés' required onChange={(e)=>setQuestion(e.target.value)}></input>
             {/* <label>Válasz:</label> */}
